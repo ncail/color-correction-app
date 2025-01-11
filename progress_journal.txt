@@ -1,0 +1,260 @@
+****************************************************************************************************************
+original work recap (and experimentation with original mathematical setup)
+****************************************************************************************************************
+slide 10 -- setup
+   matrix equation is A * x_vec = c_vec
+      A is the CCM
+      x_vec is (s, s, s)T
+         s is grayscale value
+      c_vec is (R, G, B)T
+      
+   A = [ a11 a12 a13
+         a21 a22 a23
+         a31 a32 a33 ]
+         
+   [ a11 a12 a13 ]   [ s1 ]     [ R ]
+   [ a21 a22 a23 ] * [ s2 ]  =  [ G ]
+   [ a31 a32 a33 ]   [ s3 ]     [ B ]
+   
+   R = (a11 * s1) + (a12 * s2) + (a13 * s3)
+   G = (a21 * s1) + (a22 * s2) + (a23 * s3)
+   B = (a31 * s1) + (a32 * s2) + (a33 * s3)
+   
+   if s = s1 = s2 = s3
+      
+      R = s(a11 + a12 + a13)
+      G = s(a21 + a22 + a23)
+      B = s(a31 + a32 + a33)
+   
+   
+slide 11 -- solving for each row of the CCM
+   [ s1 s1 s1 ]   [ a11 ]     [ R1 ]
+   [ s2 s2 s2 ] * [ a12 ]  =  [ R2 ]
+   [ s3 s3 s3 ]   [ a13 ]     [ R3 ]
+   
+   R1 = s1*a11 + s1*a12 + s1*a13 = s1(a11 + a12 + a13)
+   R2 = s2*a11 + s2*a12 + s2*a13 = s2(a11 + a12 + a13)
+   R3 = s3*a11 + s3*a12 + s3*a13 = s3(a11 + a12 + a13)
+   
+   
+slide 12
+   solution of form A1_vec = R_vec * S_inverse is not possible because S is singular by nature
+   so we can instead try least squares solution by overdetermining the system
+   
+
+use rgb values from paint.net colorpicker when measuring grayscale, instead of V value. then normalizing the S matrix isnt necessary. plus, this calculation is off, bc normailzing V doesnt give the rgb value, so V represents some other aspects of the color
+
+
+critical problem: least squares gives rows of the ccm with identical values -- this makes any grayscale value more reddish, greenish, or bluish. this is an issue when two grayscale values are very similar (brown and bright red: 81, 80).
+
+
+testing first brown patch RGB output
+a11 = a12 = a13 = 0.3446
+=> R1 = 108 and s1 = 81
+validate => 81*3*0.3446 = R1 = 83.73
+
+a21 = a22 = a23 = 0.3294
+=> G1 = 71 and s1 = 81
+=> 81*3*0.3294 = G1 = 80.04
+
+a31 = a32 = a33 = 0.3217
+=> B1 = 60 and s1 = 81
+=> 81*3*0.3217 = B1 = 78.17
+
+
+testing red patch
+a11 = a12 = a13 = 0.3446
+=> R1 = 166 and s1 = 80
+validate => 80*3*0.3446 = R1 = bad
+
+a21 = a22 = a23 = 0.3294
+=> G1 = 41 and s1 = 80
+=> 80*3*0.3294 = G1 = bad
+
+a31 = a32 = a33 = 0.3217
+=> B1 = 56 and s1 = 80
+=> 80*3*0.3217 = B1 = bad
+
+
+awful brown/sepia matrix
+first 8 patches (left to right, top to bottom)
+S_grayscaleMatrix = [
+    81 81 81;
+    152 152 152;
+    112 112 112;
+    90 90 90;
+    125 125 125;
+    160 160 160;
+    132 132 132;
+    87 87 87;
+    ]
+
+b_redMatrix = [108 188 91 76 126 104 208 72]'
+b_greenMatrix = [71 140 114 103 114 188 112 80]'
+b_blueMatrix = [60 121 156 60 177 159 36 161]'
+
+
+greenish diarrhea
+S_grayscaleMatrix = [
+    76 76 76;
+    150 150 150;
+    29 29 29;
+    226 226 226;
+    105 105 105;
+    179 179 179;
+    255 255 255;
+    0 0 0;
+    ]
+
+b_redMatrix =   [255 0   0   255 255 0   255 0]'
+b_greenMatrix = [0   255 0   255 0   255 255 0]'
+b_blueMatrix =  [0   0   255 0   255 255 255 0]'
+
+
+****************************************************************************************************************
+brainstorming new approach
+****************************************************************************************************************
+To try to formulate a solution that allows each row of the CCM have
+unique components (a11, a12, a13 are unique instead of identical) we
+eliminate using identical scalar value rows (the patch method) that
+correspond to R1 R2 R3 (different R values of each patch).
+
+New method has 3 different scalar values map to the same R value in each
+row. This is done by setting an R value (R1=50, etc), and then
+caluclating any scalar value with that R value (online calculator) so the 
+G, B values are arbitrary.
+
+Therefore, we need 3 grayscale matrices to calculate each row of CCM
+coefficients.
+  [ s11 s12 s13 ]   [ a11 ]     [ R1 ]
+  [ s21 s22 s23 ] * [ a12 ]  =  [ R2 ]
+  [ s31 s32 s33 ]   [ a13 ]     [ R3 ]
+  
+  
+************** part 2
+  [ a11 a12 a13 ]   [ s1 ]     [ R ]
+  [ a21 a22 a23 ] * [ s2 ]  =  [ G ]
+  [ a31 a32 a33 ]   [ s3 ]     [ B ]
+  
+[ 3.5150	-0.2765	-0.0711 ]   [ 255 ]   [ R ]   [  896 ]
+[ 1.7219	-0.0105	-0.0543 ] * [   0 ] = [ G ] = [  433 ]
+[ 7.5602	-0.3475	-0.1679 ]   [   0 ]   [ B ]   [ 1912 ] ... sadface
+
+
+If the coefficients are calculated correctly, then the final output should weight the diagonal of the matrix the most heavily
+[ R1 R2 R3 ]   [R']   [ R1*R' + R2*G' R3*B' ]
+[ G1 G2 G3 ] * [G'] = [ G1*R' + G2*G' G3*B' ] 
+[ B1 B2 B3 ]   [B']   [ B1*R' + B2*G' B3*B' ]
+
+as in --
+[ 0.90 0.05 0.05 ]
+[ 0.05 0.90 0.05 ]
+[ 0.05 0.05 0.90 ]
+
+=>
+[ 0.90 0.05 0.05 ]   [ 255 ]   [ R ]   [ 230 ]
+[ 0.05 0.90 0.05 ] * [   0 ] = [ G ] = [  13 ]
+[ 0.05 0.05 0.90 ]   [   0 ]   [ B ]   [  13 ]
+
+
+****************************************************************************************************************
+as of jan 10
+****************************************************************************************************************
+progress: changed calculation of ccm coefficients to eliminate aspect of one-dimensionality (rows of identical grayscale values) because this gave identical rows of ccm coefficients (actually 3 unknowns instead of 9). 
+
+   --OLD WAY--
+   [ s1 s1 s1 ]   [ a11 ]     [ R1 ]
+   [ s2 s2 s2 ] * [ a12 ]  =  [ R2 ]      
+   [ s3 s3 s3 ]   [ a13 ]     [ R3 ]
+
+we instead map 3 different grayscale values to the same R, G, or B value in each row. this matrix S (brainstorming method) 
+
+  --NEW WAY--
+  [ s11 s12 s13 ]   [ a11 ]     [ R1 ]
+  [ s21 s22 s23 ] * [ a12 ]  =  [ R2 ]    
+  [ s31 s32 s33 ]   [ a13 ]     [ R3 ]
+
+then has 9 unique values, AND is invertible, eliminating the need to rely on least squares method of solving. However, an aspect of one-dimensionlaity remains in the application of the ccm to the vectorized target grayscale value which has identical components (s, s, s)T. 
+
+   CCM             * target pixel = output color
+   [ a11 a12 a13 ]   [ s ]          [ R ]
+   [ a21 a22 a23 ] * [ s ]        = [ G ]
+   [ a31 a32 a33 ]   [ s ]          [ B ]
+
+We suspect that the tinting effect we see (possible since every value in the ccm is shifted equally by the same grayscale value), even when using brainstoriming approach, is due to this.
+
+****************************************************************************************************************
+TODO as of jan 10
+****************************************************************************************************************
+1. ccm should be multiplied by 3 unique values (rgb) instead of 3-dimensionalized/vectorized grayscale value. this one-dimensionality (3 identical values) likely just creates another tinting method since every value in the ccm is shifted equally by the same grayscale value.
+   
+   we need to develop a method that allows us to pass an rgb into the ccm multiplication.
+   
+   possible approach: passing grayscale val to interpolation map -- 
+      
+      {
+      function rgb_prime = interpolation_map(scalar)
+         % Store corresponding lists of grayscale values and rgb vectors.
+      
+         % For scalar, find closest stored grayscale values, average between the
+         % rgb values in each corresponding vector.
+         
+         % return primed rgb
+      }
+
+2. ccm coefficients are not spread in convincing ratios, they can clearly result in white (255+) values.
+   current matrix using brainstorming approach above
+      [ 3.5150	-0.2765	-0.0711 ]
+      [ 1.7219	-0.0105	-0.0543 ]
+      [ 7.5602	-0.3475	-0.1679 ]
+   matrix close to what we want (example) because the final output should weight the diagonal of the matrix the most heavily
+      [ 0.90 0.05 0.05 ]
+      [ 0.05 0.90 0.05 ]
+      [ 0.05 0.05 0.90 ]
+   this is close to an identity matrix. adjusting the positions of the ~1 values, it can be used as a transform, mapping red to blue, etc.
+      
+   example: pure red being transformed by the matrix still gives a strong red color
+   =>
+   [ 0.90 0.05 0.05 ]   [ 255 ]   [ R ]   [ 230 ]
+   [ 0.05 0.90 0.05 ] * [ 0   ] = [ G ] = [ 13  ]
+   [ 0.05 0.05 0.90 ]   [ 0   ]   [ B ]   [ 13  ]
+      
+3. build gui in matlab
+   allows user to map grayscale shade to an rgb value, runs calculation with button press, display side by side gray and colorized image
+   to start: allows 6 colors (red, blue, yellow, green, orange, purple) to be mapped
+   
+4. meet with professor to ask about possible suspects or tricks to resolve problem 2.
+   is an approximate identity matrix actually the desired form?
+   if a grayscale value can map to red or blue, for example, then shouldnt the form of the ccm depend on the exact customization/mapping of grayscale to color by the user of the gui?
+   
+   check specific calculations with professor of brainstorming approach (record every rgb value) if he has intuition about its invertibility, and why this method just tinted the matrix purple
+   
+   is it possible to find a systematic method of creating the above approximate identity values? can this be done by choosing the grayscale values in a specific way? currently, i chose the constant R, G, B values in an increasing way, and i generally increased the rgb values to calculate the grayscale values, causing them to also be increasing across each row. this is suspicious: may also be causing the tinting effect. a more specific approach to choosing the rgb values to calculate each S matrix may result in a better ccm.
+   
+      --CURRENT CALCULATION (resulting in the ccm in 2.)--
+      S_grayscaleMatrix_red = [
+         22 68 120;
+         37 65 170;
+         67 95 130;
+      ];
+      S_grayscaleMatrix_green = [
+         33 71 112;
+         63 79 141;
+         122 138 159;
+      ];
+      S_grayscaleMatrix_blue = [
+         15 94 183;
+         20 56 189;
+         32 67 111;
+      ];
+      
+      % each value corresponds to a row of S_red: R=50 is held constant, while B and G are adjusted by iterating through 10, 50, 100, 200 (and skipping the current R value) to calculate the gray value in S_red
+      b_redMatrix =   [50 100 200]';   
+      b_greenMatrix = [50 100 200]';
+      b_blueMatrix =  [50 100 200]';
+   
+
+C:\Users\Nevarias\OneDrive - Texas A&M University-Corpus Christi\Documents\tamucc\spring_2024\engrAnalysis\project\images
+   
+   
+   
