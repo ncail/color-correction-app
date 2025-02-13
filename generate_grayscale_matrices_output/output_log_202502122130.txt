@@ -1,0 +1,108 @@
+b_redMatrix: 
+   255
+     0
+     0
+
+b_greenMatrix: 
+     0
+   255
+     0
+
+b_blueMatrix: 
+     0
+     0
+   255
+
+S_grayscaleMatrix_red: 
+   98.2110   82.6290   81.7170
+   28.8840   29.8180  116.0310
+  147.2640   83.1450   86.2960
+
+S_grayscaleMatrix_green: 
+   17.7370   13.8400   85.4960
+  245.4690  169.8200  222.3150
+   48.4290   65.5150   54.0980
+
+S_grayscaleMatrix_blue: 
+  125.9420  115.2040  205.8510
+   95.0440  131.5130   73.7650
+  177.1550   93.0070   91.5560
+
+calculated color correction matrix: 
+   -5.1749   10.6762   -1.4554
+    2.2846   -1.4976   -0.2315
+    2.6011   -1.4389   -0.7861
+
+colorized image saved to colorized_images/colorized_image_20250212213009.png
+b_redMatrix: 
+   255
+     0
+     0
+
+b_greenMatrix: 
+     0
+   255
+     0
+
+b_blueMatrix: 
+     0
+     0
+   255
+
+S_grayscaleMatrix_red: 
+  152.6660   99.3630  124.2890
+   40.8400  170.4740  143.8870
+   36.9030   28.1760   67.9530
+
+S_grayscaleMatrix_green: 
+   63.6860   41.8100   60.3880
+  224.7480  225.6040  173.6600
+   28.9340   16.7630   63.9680
+
+S_grayscaleMatrix_blue: 
+   91.0780   80.4300  163.2830
+  128.0680  102.1710  209.5620
+  100.7610  176.3460  181.5280
+
+calculated color correction matrix: 
+    2.5181    0.8476   -1.7189
+   -2.4084    3.3710    0.2060
+    0.2771    2.9350   -1.6003
+
+colorized image saved to colorized_images/colorized_image_20250212213064.png
+b_redMatrix: 
+   255
+     0
+     0
+
+b_greenMatrix: 
+     0
+   255
+     0
+
+b_blueMatrix: 
+     0
+     0
+   255
+
+S_grayscaleMatrix_red: 
+  196.2570  166.4270  112.9630
+   59.5920  149.7600   38.6810
+  151.1060   44.8350   70.1170
+
+S_grayscaleMatrix_green: 
+   22.5210   24.7750   17.2420
+  216.9230  200.3010  168.6480
+   55.4200   92.2580   79.2900
+
+S_grayscaleMatrix_blue: 
+  133.3460  161.7550  137.0530
+   26.6570  147.9880  174.7400
+  118.4310  194.5320  208.3780
+
+calculated color correction matrix: 
+   -8.7096   -1.6557   19.8285
+    2.8332   -6.2937    5.3428
+    6.0422  -14.8710   11.6726
+
+colorized image saved to colorized_images/colorized_image_20250212213064.png

@@ -1,0 +1,72 @@
+b_redMatrix: 
+   200
+   100
+    50
+
+b_greenMatrix: 
+   200
+   100
+    50
+
+b_blueMatrix: 
+   200
+   100
+    50
+
+S_grayscaleMatrix_red: 
+  182.5120  207.5800  125.1700
+  136.0080  163.5460  100.4390
+  174.8220  150.3090  125.3830
+
+S_grayscaleMatrix_green: 
+  193.3480  170.8340  150.6110
+  139.0420  122.8320  113.4660
+   88.0600   53.0780   75.9310
+
+S_grayscaleMatrix_blue: 
+  231.7200   69.9800  132.6730
+  231.4270  189.5760  136.4050
+  164.9890  184.8700  138.1580
+
+calculated color correction matrix: 
+    5.2478    1.8804   -9.1724
+    8.4163   -0.8601   -8.5009
+    0.8263   -0.8501    0.5127
+
+colorized image saved to colorized_images/colorized_image_20250212214078.png
+b_redMatrix: 
+   200
+   100
+    50
+
+b_greenMatrix: 
+   200
+   100
+    50
+
+b_blueMatrix: 
+   200
+   100
+    50
+
+S_grayscaleMatrix_red: 
+  198.7490  147.9290  139.4130
+  193.8660  131.0070   53.1950
+  128.1090  146.3330  100.5450
+
+S_grayscaleMatrix_green: 
+  206.6860  139.7850  158.8770
+  136.1490   79.3480   88.9330
+   80.8080   58.4880  109.5070
+
+S_grayscaleMatrix_blue: 
+  170.9050   99.6230  224.9290
+   84.8410  130.7240  115.6180
+  141.5570   45.0690  105.9170
+
+calculated color correction matrix: 
+    1.3699   -1.8508    1.4455
+   -0.7775    3.5866   -0.8853
+   -0.7252   -0.0627    1.4679
+
+colorized image saved to colorized_images/colorized_image_20250212214073.png
