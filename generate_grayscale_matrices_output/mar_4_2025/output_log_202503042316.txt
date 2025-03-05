@@ -1,0 +1,43 @@
+b_redMatrix: 
+   200
+   200
+   200
+
+b_greenMatrix: 
+   200
+   200
+   200
+
+b_blueMatrix: 
+   200
+   200
+   200
+
+S_grayscaleMatrix_red: 
+   243     0    10
+   251     6    13
+   255    16     5
+
+S_grayscaleMatrix_green: 
+     0   250     9
+     6   253    11
+    11   255    19
+
+S_grayscaleMatrix_blue: 
+     0    11   255
+     9     4   250
+     6    10   244
+
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('mldivide')" style="font-weight:bold"> \ </a>
+Linear algebra is not supported for integer data types. To operate on each element of the matrix individually, use
+LDIVIDE (.) for elementwise left division.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('colorCorrection_generate_grayscale_matrices', 'C:\data\color-correction-app\colorCorrection_generate_grayscale_matrices.mlx', 45)" style="font-weight:bold">colorCorrection_generate_grayscale_matrices</a> (<a href="matlab: opentoline('C:\data\color-correction-app\colorCorrection_generate_grayscale_matrices.mlx',45,0)">line 45</a>)
+c_redMatrix = S_grayscaleMatrix_red\b_redMatrix;
+} 
+colorCorrection_generate_grayscale_matrices
+
+outputfile = 
+
+    "generate_grayscale_matrices_output/output_log_202503042320.txt"
+
