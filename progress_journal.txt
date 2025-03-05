@@ -143,7 +143,7 @@ coefficients.
 
 If the coefficients are calculated correctly, then the final output should weight the diagonal of the matrix the most heavily
 [ R1 R2 R3 ]   [R']   [ R1*R' + R2*G' R3*B' ]
-[ G1 G2 G3 ] * [G'] = [ G1*R' + G2*G' G3*B' ] 
+[ G1 G2 G3 ] * [G'] = [ G1*R' + G2*G' G3*B' ]
 [ B1 B2 B3 ]   [B']   [ B1*R' + B2*G' B3*B' ]
 
 as in --
@@ -201,6 +201,8 @@ TODO as of jan 10
          
          % return primed rgb
       }
+      
+   Add more keys to gray-rgb mapping. for example: grayscale value for orange is between green and cyan mappings.
 
 2. ccm coefficients are not spread in convincing ratios, they can clearly result in white (255+) values.
    current matrix using brainstorming approach above
@@ -231,6 +233,9 @@ TODO as of jan 10
    
    is it possible to find a systematic method of creating the above approximate identity values? can this be done by choosing the grayscale values in a specific way? currently, i chose the constant R, G, B values in an increasing way, and i generally increased the rgb values to calculate the grayscale values, causing them to also be increasing across each row. this is suspicious: may also be causing the tinting effect. a more specific approach to choosing the rgb values to calculate each S matrix may result in a better ccm.
    
+   can the ccm only be used secondary to the interpolation map, or can it be used to go directly from mono to color?
+   this determines the design of the ccm tab in the gui.
+   
       --CURRENT CALCULATION (resulting in the ccm in 2.)--
       S_grayscaleMatrix_red = [
          22 68 120;
@@ -252,9 +257,48 @@ TODO as of jan 10
       b_redMatrix =   [50 100 200]';   
       b_greenMatrix = [50 100 200]';
       b_blueMatrix =  [50 100 200]';
+      
+
+   
+GUI design
+display grayscale value of pixel cursor is hovering overdetermining
+allow selection of pixel, and display color wheel to map that grayscale to the chosen rgb color
+   this builds the lists currently in interpolation_map function
+   
+want to setup interpolation method and try only using that,
+and also be able to only use the ccm,
+also be able to use both
+   this will allow exploration of how the coeffiencts are generated and their independent and synergetic
    
 
-C:\Users\Nevarias\OneDrive - Texas A&M University-Corpus Christi\Documents\tamucc\spring_2024\engrAnalysis\project\images
-   
-   
-   
+****************************************************************************************************************
+jan 18
+****************************************************************************************************************
+
+imread and imshow wont read monochrome images, so we have to imread(an rgb image) to get an acceptable format for the new/converted rgb image and then convert to monchrome, so a monochrome image cannot be input/used directly
+
+GUI design
+interpolation map tab
+   one window
+      set a monochrome image in window, validate image format is not rgb/is mono
+      hover over image displays scalar value of pixel
+      click event on image gets scalar value and opens color picker
+         scalar-color picker pair is added to interpolation map function
+            current interpolation map is displayed
+      user can set the interpolation map when done picking values
+      scalar value duplicates are not allowed, allow overwrite previous
+   split window
+      generate rgb image, create right window, send mono image to left window
+      allow ccm switch to ccm tab, accessing the new rgb image
+ccm tab
+   ???
+
+
+****************************************************************************************************************
+feb 12
+****************************************************************************************************************
+experimenting with choosing the grayscale values and R, G, and B vectors used to solve each row of the CCM
+write each grayscale value as a triplet (r, g, b) where the triplet is what is input to a rgb2gray calculator (online tool)
+
+wrote program that allows setting of b_vector values, then uses those fixed color channel values when calculating the gray values for the gray matrices, using randomly generated other-two-color-values in the current row of calculation.
+
