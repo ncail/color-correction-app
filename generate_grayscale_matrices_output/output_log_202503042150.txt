@@ -1,0 +1,123 @@
+b_redMatrix: 
+   150
+   150
+   150
+
+b_greenMatrix: 
+   150
+   150
+   150
+
+b_blueMatrix: 
+   150
+   150
+   150
+
+S_grayscaleMatrix_red: 
+  116.1070   51.1590   46.2520
+  119.2700   47.4260   50.7200
+  115.6510   46.1210   48.3720
+
+S_grayscaleMatrix_green: 
+   91.9520  131.7420   91.8810
+   92.0660  132.3120   88.8050
+   88.3490  132.6820   89.2890
+
+S_grayscaleMatrix_blue: 
+   22.7040   22.3830  112.7770
+   20.3450   17.6870  109.5540
+   20.3780   23.0250  113.6630
+
+calculated color correction matrix: 
+    5.0724   -3.0384   -6.1294
+    0.1161    0.9339    0.1774
+    0.2539   -1.1639    1.5099
+
+CCM inverse: 
+    0.1486    1.0777    0.4767
+   -0.0120    0.8473   -0.1481
+   -0.0342    0.4718    0.4679
+
+colorized image saved to colorized_images/colorized_image_20250304215089.png
+b_redMatrix: 
+   150
+   150
+   150
+
+b_greenMatrix: 
+   150
+   150
+   150
+
+b_blueMatrix: 
+   150
+   150
+   150
+
+S_grayscaleMatrix_red: 
+  117.1670   48.6970   50.2470
+  115.8790   45.4200   46.7250
+  117.1500   49.5290   50.8340
+
+S_grayscaleMatrix_green: 
+   91.3540  131.3720   90.1860
+   88.5770  132.0410   88.6480
+   89.2460  132.2690   88.6910
+
+S_grayscaleMatrix_blue: 
+   19.1820   21.8510  106.5970
+   17.9970   23.2910  107.4940
+   21.7960   22.7260  111.2820
+
+calculated color correction matrix: 
+    1.4945    1.2113   -1.6736
+   -0.3122    0.7484    0.8893
+   -3.9765   -5.2672    3.2025
+
+CCM inverse: 
+  -31.7609  -22.1399  -10.4498
+   11.3770    8.3830    3.6176
+  -20.7257  -13.7036   -6.7133
+
+colorized image saved to colorized_images/colorized_image_20250304215092.png
+b_redMatrix: 
+   150
+   150
+   150
+
+b_greenMatrix: 
+   150
+   150
+   150
+
+b_blueMatrix: 
+   150
+   150
+   150
+
+S_grayscaleMatrix_red: 
+  117.0530   49.5460   45.6480
+  119.0420   50.3440   49.8880
+  119.7430   47.1980   49.8880
+
+S_grayscaleMatrix_green: 
+   90.7560  129.7630   90.4140
+   91.6530  131.7420   88.0500
+   91.5820  131.5570   90.2570
+
+S_grayscaleMatrix_blue: 
+   21.5080   22.1060  111.6140
+   20.6660   25.3620  108.3910
+   20.6440   22.7150  110.4400
+
+calculated color correction matrix: 
+    1.4318    0.3190   -0.7317
+    4.9421   -2.2783   -0.0320
+   -1.0877    1.0505    1.3455
+
+CCM inverse: 
+    0.3593    0.1420    0.1988
+    0.7840   -0.1340    0.4232
+   -0.3217    0.2194    0.5735
+
+colorized image saved to colorized_images/colorized_image_20250304215000.png

@@ -1,0 +1,41 @@
+b_redMatrix: 
+   200
+   200
+   200
+
+b_greenMatrix: 
+   200
+   200
+   200
+
+b_blueMatrix: 
+   200
+   200
+   200
+
+S_grayscaleMatrix_red: 
+  132.5730   63.9090   63.7780
+   65.6700   63.1910   63.6470
+   62.4730   62.7350   61.1850
+
+S_grayscaleMatrix_green: 
+  119.0090  118.9810  118.9100
+  119.1380  160.2100  118.3400
+  118.3830  120.1770  119.3940
+
+S_grayscaleMatrix_blue: 
+   29.0020   30.4640   27.5070
+   23.9850   26.9420   28.4040
+   26.9530   27.2410  119.3740
+
+calculated color correction matrix: 
+   -0.0403    3.8775   -0.6658
+    0.7399    0.0106    0.9309
+  -13.0057   18.6188    0.3631
+
+CCM inverse: 
+    0.3064    0.2441   -0.0640
+    0.2188    0.1534    0.0080
+   -0.2460    0.8785    0.0507
+
+colorized image saved to colorized_images/colorized_image_20250304214159.png

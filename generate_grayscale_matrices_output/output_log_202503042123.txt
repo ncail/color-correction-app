@@ -1,0 +1,82 @@
+b_redMatrix: 
+   255
+   255
+   255
+
+b_greenMatrix: 
+   255
+   255
+   255
+
+b_blueMatrix: 
+   255
+   255
+   255
+
+S_grayscaleMatrix_red: 
+  147.9750   79.9950   80.5650
+   77.5330  148.4480   79.1630
+   76.4730   80.9410  153.1270
+
+S_grayscaleMatrix_green: 
+  193.1640  150.8530  153.3590
+  151.4080  193.1640  152.2340
+  152.0210  150.7110  194.8870
+
+S_grayscaleMatrix_blue: 
+  119.1430   34.0760   33.4780
+   33.4780  123.8610   36.4460
+   33.5220   32.3370  122.3660
+
+calculated color correction matrix: 
+    0.8221    0.8624    0.7989
+    0.5115    0.5184    0.5086
+    1.3904    1.2815    1.3644
+
+CCM inverse: 
+   37.6559 -103.7160   16.6120
+    6.2340    7.4162   -6.4145
+  -44.2296   98.7292  -10.1710
+
+colorized image saved to colorized_images/colorized_image_20250304212325.png
+b_redMatrix: 
+   150
+   150
+   150
+
+b_greenMatrix: 
+   150
+   150
+   150
+
+b_blueMatrix: 
+   150
+   150
+   150
+
+S_grayscaleMatrix_red: 
+  118.4550   50.8170   49.3980
+   50.2300  116.3520   50.1330
+   47.8990   51.5180  118.4550
+
+S_grayscaleMatrix_green: 
+  130.1480   88.0500   89.6590
+   91.3540  131.5570   90.7130
+   91.8380   90.8980  131.5720
+
+S_grayscaleMatrix_blue: 
+  106.2870   19.7470   24.4870
+   19.4480  109.5430   22.7150
+   20.3450   22.9700  106.5860
+
+calculated color correction matrix: 
+    0.6795    0.6997    0.6872
+    0.5291    0.4609    0.4523
+    0.9969    0.9839    1.0050
+
+CCM inverse: 
+   -8.1640   12.2164    0.0840
+   36.4909    0.9759  -25.3914
+  -27.6284  -13.0741   25.7717
+
+colorized image saved to colorized_images/colorized_image_20250304212322.png
